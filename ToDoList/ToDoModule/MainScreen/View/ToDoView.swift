@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct ToDoView<ViewModelProtocol>: View where ViewModelProtocol: ToDoViewModelProtocol {
+struct ToDoView<ViewModelProtocol>: View
+where ViewModelProtocol: ToDoViewModelProtocol {
     
     @StateObject private var viewModel: ViewModelProtocol
     
@@ -55,11 +56,17 @@ struct ToDoView<ViewModelProtocol>: View where ViewModelProtocol: ToDoViewModelP
                     Image(systemName: "bookmark.fill")
                     Text("Favorite")
                 }
+            SettingsView(userDefaultManager: viewModel.userDefaultManager, notificationManager: viewModel.notificationManager)
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
+                }
         }
         .onAppear {
+            viewModel.notificationManager.askPermission()
+            viewModel.notificationManager.timeInterval = viewModel.userDefaultManager.getSettings().notificationsTimeInterval
             viewModel.toDoTasks = viewModel.coreDataManager.getData().sorted { $0.date < $1.date }
         }
-        
     }
     
     private var yearButton: some View {
@@ -271,7 +278,7 @@ struct ToDoView<ViewModelProtocol>: View where ViewModelProtocol: ToDoViewModelP
             } else {
                 ForEach(Array(viewModel.toDoTasks.enumerated()), id: \.element) { index, task in
                     if task.date.stringDate == viewModel.selectedDate.stringDate {
-                        ToDoTaskView(task: task, isEditing: isEditing, coreDataManager: viewModel.coreDataManager) {
+                        ToDoTaskView(task: task, isEditing: isEditing, coreDataManager: viewModel.coreDataManager, notificationManager: viewModel.notificationManager) {
                             withAnimation {
                                 viewModel.toDoTasks = viewModel.coreDataManager.getData().sorted { $0.date < $1.date }
                             }
@@ -323,6 +330,6 @@ struct ToDoView<ViewModelProtocol>: View where ViewModelProtocol: ToDoViewModelP
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoView(viewModel: ToDoViewModel(coreDataManager: CoreDataManager(name: "Model")))
+        ToDoView(viewModel: ToDoViewModel(coreDataManager: CoreDataManager(name: "Model"), notificationManager: NotificationManager(), userDefaultManager: UserDefaultManafer()))
     }
 }

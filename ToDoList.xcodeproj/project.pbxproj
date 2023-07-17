@@ -25,6 +25,13 @@
 		BFBEE13D2A615E6600BDA448 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE13C2A615E6600BDA448 /* EditView.swift */; };
 		BFBEE1402A62939500BDA448 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE13F2A62939500BDA448 /* FavoriteView.swift */; };
 		BFBEE1422A62F76600BDA448 /* FavoriteTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE1412A62F76600BDA448 /* FavoriteTaskView.swift */; };
+		BFBEE1452A641F1200BDA448 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE1442A641F1200BDA448 /* NotificationManager.swift */; };
+		BFBEE1482A647B0500BDA448 /* NotificationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE1472A647B0500BDA448 /* NotificationManagerProtocol.swift */; };
+		BFBEE14B2A6486BF00BDA448 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE14A2A6486BF00BDA448 /* SettingsView.swift */; };
+		BFBEE14D2A648B7300BDA448 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE14C2A648B7300BDA448 /* NotificationsView.swift */; };
+		BFBEE1502A649F6400BDA448 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE14F2A649F6400BDA448 /* Settings.swift */; };
+		BFBEE1522A65751200BDA448 /* UserDefaultManafer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE1512A65751200BDA448 /* UserDefaultManafer.swift */; };
+		BFBEE1552A65753400BDA448 /* UserDefaultManaferProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBEE1542A65753400BDA448 /* UserDefaultManaferProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,12 +48,19 @@
 		BFBEE12D2A602E5700BDA448 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		BFBEE1312A60A31700BDA448 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		BFBEE1332A60ADFF00BDA448 /* ToDoTaskModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoTaskModel+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BFBEE1342A60ADFF00BDA448 /* ToDoTaskModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ToDoTaskModel+CoreDataProperties.swift"; path = "/Users/andnik/Desktop/ALL/swift coding/ToDoList/ToDoList/CoreData/ToDoTaskModel+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		BFBEE1342A60ADFF00BDA448 /* ToDoTaskModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ToDoTaskModel+CoreDataProperties.swift"; path = "/Users/andnik/Desktop/ALL/swift coding/ToDoList/ToDoList/Manager/CoreData/ToDoTaskModel+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		BFBEE1372A60AEB500BDA448 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		BFBEE1392A60C80600BDA448 /* CoreDataManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerProtocol.swift; sourceTree = "<group>"; };
 		BFBEE13C2A615E6600BDA448 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		BFBEE13F2A62939500BDA448 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		BFBEE1412A62F76600BDA448 /* FavoriteTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTaskView.swift; sourceTree = "<group>"; };
+		BFBEE1442A641F1200BDA448 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		BFBEE1472A647B0500BDA448 /* NotificationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerProtocol.swift; sourceTree = "<group>"; };
+		BFBEE14A2A6486BF00BDA448 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BFBEE14C2A648B7300BDA448 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		BFBEE14F2A649F6400BDA448 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		BFBEE1512A65751200BDA448 /* UserDefaultManafer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManafer.swift; sourceTree = "<group>"; };
+		BFBEE1542A65753400BDA448 /* UserDefaultManaferProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManaferProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +93,11 @@
 		BFBEE10D2A5F44AB00BDA448 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				BFBEE13E2A62936C00BDA448 /* FavoriteModeule */,
+				BFBEE1492A64869C00BDA448 /* SettingsModule */,
+				BFBEE13E2A62936C00BDA448 /* FavoriteModule */,
 				BFBEE11D2A5F459A00BDA448 /* ToDoModule */,
 				BFBEE12C2A602E4600BDA448 /* Extention */,
-				BFBEE12F2A60A20300BDA448 /* CoreData */,
+				BFBEE1432A641E9A00BDA448 /* Manager */,
 				BFBEE11C2A5F44D200BDA448 /* App */,
 				BFBEE1142A5F44AB00BDA448 /* Preview Content */,
 			);
@@ -180,13 +195,59 @@
 			path = EditViewModule;
 			sourceTree = "<group>";
 		};
-		BFBEE13E2A62936C00BDA448 /* FavoriteModeule */ = {
+		BFBEE13E2A62936C00BDA448 /* FavoriteModule */ = {
 			isa = PBXGroup;
 			children = (
 				BFBEE13F2A62939500BDA448 /* FavoriteView.swift */,
 				BFBEE1412A62F76600BDA448 /* FavoriteTaskView.swift */,
 			);
-			path = FavoriteModeule;
+			path = FavoriteModule;
+			sourceTree = "<group>";
+		};
+		BFBEE1432A641E9A00BDA448 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				BFBEE1532A65751800BDA448 /* UserDefault */,
+				BFBEE1462A647AC200BDA448 /* UserNotification */,
+				BFBEE12F2A60A20300BDA448 /* CoreData */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		BFBEE1462A647AC200BDA448 /* UserNotification */ = {
+			isa = PBXGroup;
+			children = (
+				BFBEE1472A647B0500BDA448 /* NotificationManagerProtocol.swift */,
+				BFBEE1442A641F1200BDA448 /* NotificationManager.swift */,
+			);
+			path = UserNotification;
+			sourceTree = "<group>";
+		};
+		BFBEE1492A64869C00BDA448 /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				BFBEE14A2A6486BF00BDA448 /* SettingsView.swift */,
+				BFBEE14C2A648B7300BDA448 /* NotificationsView.swift */,
+				BFBEE14E2A649F4800BDA448 /* Model */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		BFBEE14E2A649F4800BDA448 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFBEE14F2A649F6400BDA448 /* Settings.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFBEE1532A65751800BDA448 /* UserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				BFBEE1542A65753400BDA448 /* UserDefaultManaferProtocol.swift */,
+				BFBEE1512A65751200BDA448 /* UserDefaultManafer.swift */,
+			);
+			path = UserDefault;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,9 +321,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFBEE1112A5F44AB00BDA448 /* ToDoView.swift in Sources */,
+				BFBEE1452A641F1200BDA448 /* NotificationManager.swift in Sources */,
+				BFBEE1482A647B0500BDA448 /* NotificationManagerProtocol.swift in Sources */,
 				BFBEE12B2A5F69B300BDA448 /* AddTaskView.swift in Sources */,
 				BFBEE13A2A60C80600BDA448 /* CoreDataManagerProtocol.swift in Sources */,
 				BFBEE1352A60ADFF00BDA448 /* ToDoTaskModel+CoreDataClass.swift in Sources */,
+				BFBEE1552A65753400BDA448 /* UserDefaultManaferProtocol.swift in Sources */,
 				BFBEE13D2A615E6600BDA448 /* EditView.swift in Sources */,
 				BFBEE1362A60ADFF00BDA448 /* ToDoTaskModel+CoreDataProperties.swift in Sources */,
 				BFBEE11F2A5F462D00BDA448 /* ToDoViewModel.swift in Sources */,
@@ -275,6 +339,10 @@
 				BFBEE1402A62939500BDA448 /* FavoriteView.swift in Sources */,
 				BFBEE1272A5F59E600BDA448 /* ToDoTaskView.swift in Sources */,
 				BFBEE1422A62F76600BDA448 /* FavoriteTaskView.swift in Sources */,
+				BFBEE1502A649F6400BDA448 /* Settings.swift in Sources */,
+				BFBEE1522A65751200BDA448 /* UserDefaultManafer.swift in Sources */,
+				BFBEE14B2A6486BF00BDA448 /* SettingsView.swift in Sources */,
+				BFBEE14D2A648B7300BDA448 /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct AddTaskView<ViewModel>: View where ViewModel: ToDoViewModelProtocol {
+struct AddTaskView<ViewModel>: View
+where ViewModel: ToDoViewModelProtocol{
     
     @State private var title = ""
     @State private var description = ""
@@ -70,6 +71,7 @@ struct AddTaskView<ViewModel>: View where ViewModel: ToDoViewModelProtocol {
                                     tag: tag)
                 viewModel.coreDataManager.saveData(task: task)
                 viewModel.toDoTasks = viewModel.coreDataManager.getData().sorted { $0.date < $1.date }
+                viewModel.notificationManager.sendNotification(date: task.date, title: task.title, body: task.description)
                 dismiss()
             }
         } label: {
@@ -122,7 +124,7 @@ struct AddTaskView<ViewModel>: View where ViewModel: ToDoViewModelProtocol {
 
 struct A_Previews: PreviewProvider {
     static var previews: some View {
-        AddTaskView(viewModel: ToDoViewModel(coreDataManager: CoreDataManager(name: "Model")))
+        AddTaskView(viewModel: ToDoViewModel(coreDataManager: CoreDataManager(name: "Model"), notificationManager: NotificationManager(), userDefaultManager: UserDefaultManafer()))
     }
 }
 

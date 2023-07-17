@@ -18,7 +18,7 @@ extension Date {
     
     public var stringTime: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mm"
+        formatter.dateFormat = "HH:mm"
         let stringDate = formatter.string(from: self)
         return stringDate
     }
@@ -33,6 +33,13 @@ extension Date {
     public var stringMonthAndDay: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM, d"
+        let stringDate = formatter.string(from: self)
+        return stringDate
+    }
+    
+    public var stringSec: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ss"
         let stringDate = formatter.string(from: self)
         return stringDate
     }

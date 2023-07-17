@@ -11,7 +11,10 @@ import SwiftUI
 struct ToDoListApp: App {
     var body: some Scene {
         WindowGroup {
-            ToDoView(viewModel: ToDoViewModel(coreDataManager: CoreDataManager(name: "Model")))
+            let viewModel = ToDoViewModel(coreDataManager: CoreDataManager(name: "Model"),
+                                          notificationManager: NotificationManager(),
+                                          userDefaultManager: UserDefaultManafer())
+            ToDoView(viewModel: viewModel)
         }
     }
 }
