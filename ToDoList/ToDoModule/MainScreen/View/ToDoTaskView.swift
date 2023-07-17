@@ -15,6 +15,7 @@ struct ToDoTaskView: View {
     
     var isEditing: Bool = false
     var coreDataManager: CoreDataManagerProtocol
+    var notificationManager: NotificationManagerProtocol
     var completion: () -> Void
     
     var body: some View {
@@ -85,6 +86,7 @@ struct ToDoTaskView: View {
                 isDeleted.toggle()
             }
             coreDataManager.delete(task: task)
+            notificationManager.removeNotification(date: task.date)
             completion()
         } label: {
             Image(systemName: "minus.circle.fill")
@@ -97,7 +99,7 @@ struct ToDoTaskView: View {
     private var timeView: some View {
         HStack {
             Text(task.date.stringTime)
-                .foregroundStyle(.secondary)
+                .foregroundColor(task.date < Date() ? .red : .secondary)
             Spacer()
         }
     }

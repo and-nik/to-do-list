@@ -10,6 +10,8 @@ import SwiftUI
 protocol ToDoViewModelProtocol: ObservableObject {
     
     var coreDataManager: CoreDataManagerProtocol { get set }
+    var notificationManager: NotificationManagerProtocol { get set }
+    var userDefaultManager: UserDefaultManaferProtocol { get set }
     
     var toDoTasks: [ToDoTask] { get set }
     var selectedDate: Date { get set }
@@ -25,6 +27,8 @@ protocol ToDoViewModelProtocol: ObservableObject {
 final class ToDoViewModel: ToDoViewModelProtocol {
     
     var coreDataManager: CoreDataManagerProtocol
+    var notificationManager: NotificationManagerProtocol
+    var userDefaultManager: UserDefaultManaferProtocol
     
     @Published public var toDoTasks: [ToDoTask] = []
     @Published public var selectedDate: Date = Date()
@@ -36,10 +40,10 @@ final class ToDoViewModel: ToDoViewModelProtocol {
         })).sorted(by: <)//убрать дубликаты годов
     }
     
-    init(coreDataManager: CoreDataManagerProtocol, toDoTasks: [ToDoTask] = [], selectedDate: Date = Date()) {
+    init(coreDataManager: CoreDataManagerProtocol, notificationManager: NotificationManagerProtocol, userDefaultManager: UserDefaultManaferProtocol) {
         self.coreDataManager = coreDataManager
-        self.toDoTasks = toDoTasks
-        self.selectedDate = selectedDate
+        self.notificationManager = notificationManager
+        self.userDefaultManager = userDefaultManager
     }
     
     private func getDaysInMonth() -> [Date] {

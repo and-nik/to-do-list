@@ -61,7 +61,7 @@ struct FavoriteTaskView: View {
     private var timeView: some View {
         HStack {
             Text(task.date.stringDate + " " + task.date.stringTime)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(task.date < Date() ? .red : .secondary)
             Spacer()
         }
     }
