@@ -12,5 +12,5 @@ protocol NotificationManagerProtocol {
     func askPermission()
     func sendNotification(date: Date, title: String, body: String)
     func removeNotification(date: Date)
-    func changeTimeInterval(timeInterval: Int)
+    func changeTimeInterval(times: [Date], timeInterval: Int)
 }

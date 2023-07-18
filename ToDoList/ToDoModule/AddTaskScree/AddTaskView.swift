@@ -15,6 +15,8 @@ where ViewModel: ToDoViewModelProtocol{
     @State private var date = Date()
     @State private var tag: Tag = .normal
     
+    @State private var isDateFailureEntered: Bool = false
+    
     @FocusState private var focus: Bool//Нужно чтобы title text field получил first responder, но почему-то не работает на айфоне(в симуляторе все работает)
     @Environment(\.dismiss) var dismiss
     
@@ -51,6 +53,9 @@ where ViewModel: ToDoViewModelProtocol{
         }
         .onAppear {
             focus = true
+            if viewModel.notificationManager.timeInterval != 0 {
+                isDateFailureEntered = date - Double(viewModel.notificationManager.timeInterval) < Date()
+            }
         }
     }
     
@@ -64,7 +69,10 @@ where ViewModel: ToDoViewModelProtocol{
     
     private var doneButton: some View {
         Button {
-            if !title.isEmpty {
+            if viewModel.notificationManager.timeInterval != 0 {
+                isDateFailureEntered = date - Double(viewModel.notificationManager.timeInterval) < Date()
+            }
+            if !title.isEmpty && !isDateFailureEntered {
                 let task = ToDoTask(title: title,
                                     description: description,
                                     date: date,
@@ -77,7 +85,7 @@ where ViewModel: ToDoViewModelProtocol{
         } label: {
             Text("Done")
                 .font(.body.bold())
-                .foregroundColor(title.isEmpty ? Color(uiColor: .secondaryLabel) : Color(uiColor: .tintColor))
+                .foregroundColor(title.isEmpty || isDateFailureEntered ? Color(uiColor: .secondaryLabel) : Color(uiColor: .tintColor))
         }
     }
     
@@ -98,11 +106,27 @@ where ViewModel: ToDoViewModelProtocol{
     }
     
     private var dateView: some View {
-        DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) {
-            Text("Select date and time")
-                .foregroundColor(Color(uiColor: .tertiaryLabel))
+        VStack {
+            DatePicker(selection: $date, displayedComponents: [.date, .hourAndMinute]) {
+                Text("Select date and time")
+                    .foregroundColor(Color(uiColor: .tertiaryLabel))
+            }
+            .datePickerStyle(.compact)
+            .onChange(of: date) { newValue in
+                if viewModel.notificationManager.timeInterval != 0 {
+                    isDateFailureEntered = newValue - Double(viewModel.notificationManager.timeInterval) < Date()
+                }
+            }
+            if isDateFailureEntered {
+                if viewModel.notificationManager.timeInterval != 0 {
+                    let minimalDate = Date() + Double(viewModel.notificationManager.timeInterval) + 60
+                    Text("Minimal date to set - \(minimalDate.stringDate) \(minimalDate.stringTime)")
+                        .foregroundColor(.red)
+                    Text("You can change it in notifications settings in application")
+                        .foregroundColor(Color(uiColor: .secondaryLabel))
+                }
+            }
         }
-        .datePickerStyle(.compact)
     }
     
     private var tagView: some View {

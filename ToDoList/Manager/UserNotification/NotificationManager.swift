@@ -59,25 +59,22 @@ final class NotificationManager: NotificationManagerProtocol {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
     }
     
-    func changeTimeInterval(timeInterval: Int) {
+    func changeTimeInterval(times: [Date], timeInterval: Int) {
         self.timeInterval = timeInterval
         Task {
             var newRequests = [UNNotificationRequest]()
             let requests = await UNUserNotificationCenter.current().pendingNotificationRequests()
-            requests.forEach { request in
-                if let calenderTrigger = request.trigger as? UNCalendarNotificationTrigger {
-                    let triggeredDate = Calendar.current.date(from: calenderTrigger.dateComponents)
-                    let newTiggeredDate = triggeredDate ?? Date() - Double(self.timeInterval)
-                    let newDateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newTiggeredDate)
-                    let newContent = UNMutableNotificationContent()
-                    let newTrigger = UNCalendarNotificationTrigger(dateMatching: newDateComp, repeats: false)
-                    newContent.title = self.timeInterval == 0 ? "Reminder" : "Reminder: in \(timeInt) \(timeString)"
-                    newContent.subtitle = request.content.subtitle
-                    newContent.body = request.content.body
-                    newContent.sound = request.content.sound
-                    let newRequest = UNNotificationRequest(identifier: request.identifier, content: newContent, trigger: newTrigger)
-                    newRequests.append(newRequest)
-                }
+            requests.enumerated().forEach { index, request in
+                let newTriggeredDate = times[index] - Double(self.timeInterval)
+                let newDateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: newTriggeredDate)
+                let newTrigger = UNCalendarNotificationTrigger(dateMatching: newDateComp, repeats: false)
+                let newContent = UNMutableNotificationContent()
+                newContent.title = self.timeInterval == 0 ? "Reminder" : "Reminder: in \(timeInt) \(timeString)"
+                newContent.subtitle = request.content.subtitle
+                newContent.body = request.content.body
+                newContent.sound = request.content.sound
+                let newRequest = UNNotificationRequest(identifier: request.identifier, content: newContent, trigger: newTrigger)
+                newRequests.append(newRequest)
             }
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             newRequests.forEach { request in

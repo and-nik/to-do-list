@@ -12,6 +12,7 @@ struct NotificationsView: View {
     
     var userDefaultManager: UserDefaultManaferProtocol
     var notificationManager: NotificationManagerProtocol
+    var coreDataManager: CoreDataManagerProtocol
     
     var settings: Settings
     
@@ -55,7 +56,8 @@ struct NotificationsView: View {
                     .contentShape(Rectangle())
                     .onTapGesture {
                         timeInterval = interval.time
-                        notificationManager.changeTimeInterval(timeInterval: interval.time)
+                        let times = coreDataManager.getData().map { $0.date }.filter { $0 > Date() }
+                        notificationManager.changeTimeInterval(times: times,timeInterval: interval.time)
                         settings.notificationsTimeInterval = timeInterval
                         userDefaultManager.saveSettings(settings: settings)
                     }
