@@ -56,7 +56,9 @@ where ViewModelProtocol: ToDoViewModelProtocol {
                     Image(systemName: "bookmark.fill")
                     Text("Favorite")
                 }
-            SettingsView(userDefaultManager: viewModel.userDefaultManager, notificationManager: viewModel.notificationManager)
+            SettingsView(userDefaultManager: viewModel.userDefaultManager,
+                         notificationManager: viewModel.notificationManager,
+                         coreDataManager: viewModel.coreDataManager)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

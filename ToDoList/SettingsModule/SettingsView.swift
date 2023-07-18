@@ -11,14 +11,16 @@ struct SettingsView: View {
     
     var notificationManager: NotificationManagerProtocol
     var userDefaultManager: UserDefaultManaferProtocol
+    var coreDataManager: CoreDataManagerProtocol
     
     var settings: Settings
     
     @State private var isUserSingIn: Bool = false
     
-    init(userDefaultManager: UserDefaultManaferProtocol, notificationManager: NotificationManagerProtocol) {
+    init(userDefaultManager: UserDefaultManaferProtocol, notificationManager: NotificationManagerProtocol, coreDataManager: CoreDataManagerProtocol) {
         self.userDefaultManager = userDefaultManager
         self.notificationManager = notificationManager
+        self.coreDataManager = coreDataManager
         self.settings = userDefaultManager.getSettings()
     }
     
@@ -44,8 +46,9 @@ struct SettingsView: View {
 //                }
                 NavigationLink {
                     NotificationsView(userDefaultManager: userDefaultManager,
-                                     notificationManager: notificationManager,
-                                     settings: settings)
+                                      notificationManager: notificationManager,
+                                      coreDataManager: coreDataManager,
+                                      settings: settings)
                 } label: {
                     HStack {
                         Image(systemName: "bell.badge.fill")
