@@ -10,12 +10,4 @@ import Foundation
 final class Settings: Codable {
     
     var notificationsTimeInterval: Int = 0
-    
-//    private var userDefaultManager: UserDefaultManaferProtocol
-//
-//    init(userDefaultManager: UserDefaultManaferProtocol) {
-//        self.userDefaultManager = userDefaultManager
-//    }
-    
-    
 }

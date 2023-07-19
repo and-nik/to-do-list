@@ -16,7 +16,6 @@ struct NotificationsView: View {
     
     var settings: Settings
     
-    //@State private var isNotificationTimeIntervalAllows: Bool = false
     @State private var timeInterval: Int = 0
     
     private let timeIntervals: [(title: String, time: Int)] = [
@@ -32,41 +31,37 @@ struct NotificationsView: View {
     ]
     
     var body: some View {
-        Form {
-//            Section {
-//                Toggle("Notifications time interval", isOn: $isNotificationTimeIntervalAllows)
-//                    .onChange(of: isNotificationTimeIntervalAllows) { newValue in
-//                        if !newValue {
-//                            notificationManager.changeTimeInterval(timeInterval: 0)
-//                        }
-//                    }
-//            } footer: {
-//                Text("Allows application to send notification in some time before task begin")
-//            }
-            Section {
-                ForEach(timeIntervals, id: \.title) { interval in
-                    HStack {
-                        Text(interval.title)
-                        Spacer()
-                        if interval.time == timeInterval {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(Color(uiColor: .tintColor))
+        VStack {
+            Form {
+                Section {
+                    ForEach(timeIntervals, id: \.title) { interval in
+                        HStack {
+                            Text(interval.title)
+                            Spacer()
+                            if interval.time == timeInterval {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(Color(uiColor: .tintColor))
+                            }
+                        }
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            timeInterval = interval.time
+                            let times = coreDataManager.getData().map { $0.date }.filter { $0 > Date() }
+                            notificationManager.changeTimeInterval(times: times,timeInterval: interval.time)
+                            settings.notificationsTimeInterval = timeInterval
+                            userDefaultManager.saveSettings(settings: settings)
                         }
                     }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        timeInterval = interval.time
-                        let times = coreDataManager.getData().map { $0.date }.filter { $0 > Date() }
-                        notificationManager.changeTimeInterval(times: times,timeInterval: interval.time)
-                        settings.notificationsTimeInterval = timeInterval
-                        userDefaultManager.saveSettings(settings: settings)
-                    }
+                } header: {
+                    Text("Notification time interval")
+                } footer: {
+                    Text("You will become a reminder as notification beefore task begin in origin time")
                 }
-            } header: {
-                Text("Notification time interval")
-            } footer: {
-                Text("You will become a reminder as notification beefore task begin in this time")
             }
+            Text("WARNING!\nIf you have pending notification in less time you set, you will lose all of them and no way to restore")
+                .foregroundColor(.red)
+                .padding(10)
+                .background(Material.regularMaterial)
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Notifications")
@@ -75,9 +70,3 @@ struct NotificationsView: View {
         }
     }
 }
-//
-//struct NotificationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NotificationView(coreDataManager: CoreDataManager(name: ""), notificationManager: NotificationManager())
-//    }
-//}
