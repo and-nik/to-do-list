@@ -27,23 +27,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-//                if !isUserSingIn {
-//                    Section {
-//                        Button {
-//                            print("fff")
-//                        } label: {
-//                            HStack {
-//                                Spacer()
-//                                Text("Sign In")
-//                                    .foregroundColor(.white)
-//                                    .font(.body.bold())
-//                                Spacer()
-//                            }
-//                            .contentShape(Rectangle())
-//                        }
-//                    }
-//                    .listRowBackground(LinearGradient(gradient: Gradient(colors: [Color.pink, Color.purple]), startPoint: .leading, endPoint: .trailing))
-//                }
                 NavigationLink {
                     NotificationsView(userDefaultManager: userDefaultManager,
                                       notificationManager: notificationManager,
@@ -69,9 +52,3 @@ struct SettingsView: View {
         }
     }
 }
-
-//struct SettingsView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingsView(coreDataManager: CoreDataManager(name: "Model"), notificationManager: NotificationManager())
-//    }
-//}
